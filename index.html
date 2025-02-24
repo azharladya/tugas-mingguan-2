@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Landing Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("contactForm");
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+                const formData = new FormData(form);
+                fetch("process_form.php", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    alert("Message Sent Successfully!");
+                    form.reset();
+                })
+                .catch(error => console.error("Error:", error));
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">FashionHub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="text-center py-5 bg-light">
+        <div class="container">
+            <h1>Explore the Latest Fashion Trends</h1>
+            <p>Stay stylish with our exclusive collection</p>
+            <a href="#products" class="btn btn-primary">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-5">
+        <div class="container text-center">
+            <h2>Our Collection</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="https://i.pinimg.com/originals/00/65/4b/00654bda10b3760d2c9df0433f95c778.jpg" class="img-fluid" alt="Fashion Item">
+                    <p>Trendy Outfit</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="https://blogunik.com/wp-content/uploads/2018/02/trend-fashion-baju-kerja.jpg" class="img-fluid" alt="Fashion Item">
+                    <p>Elegant Outfit</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="https://mitramulia.com/kcfinder/upload/files/Informasi/Kombinasi%20Jaket%20Blazer%20Wanita%20dan%20Hijab%20Untuk%20Tampilan%20Kasual%20yang%20Menawan.jpg" class="img-fluid" alt="Fashion Item">
+                    <p>Formal Modern</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center">Contact Us</h2>
+            <form id="contactForm" method="POST">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
